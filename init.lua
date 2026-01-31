@@ -16,7 +16,6 @@
 
 
    `:checkhealth` if the world is on fire
-<<< master
    Thanks TJ.
 
    NOTE: vugnaes sreo
@@ -141,7 +140,7 @@ vim.keymap.set('n', '<C-Down>', '<C-w><C-j>', { desc = 'Move focus to the lower 
 vim.keymap.set('n', '<C-Up>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 vim.keymap.set('n', '<C-Right>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 
--- Terminal keymaps to make it<<< master easyer to open a terminal in the directory that I am working
+-- Terminal keymaps to make it easyer to open a terminal in the directory that I am working
 -- (thanks alacritty for not having tabs *ironically*)
 vim.keymap.set('n', '<leader>tt', ':!alacritty --working-directory=%:p:h &<CR><CR>', { desc = 'Open external terminal in current file directory' })
 vim.keymap.set('n', '<leader>t.', ':lcd %:p:h | terminal<CR>', { desc = 'Open integrated terminal in current file directory' })
@@ -183,7 +182,6 @@ rtp:prepend(lazypath)
 --
 require('lazy').setup({
   'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
-<<< master
   -- Use `opts = {}` to automatically pass options to a plugin's `setup()` function, forcing the plugin to be loaded.
 
   -- Alternatively, use `config = function() ... end` for full control over the configuration.
@@ -230,7 +228,7 @@ require('lazy').setup({
 
       -- Document existing key chains
       spec = {
-        { '<leader>s', group =<<< master '[S]earch', mode = { 'n', 'v' } },
+        { '<leader>s', group = '[S]earch', mode = { 'n', 'v' } },
         { '<leader>t', group = '[T]oggle' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       },
@@ -419,7 +417,7 @@ require('lazy').setup({
       --
       -- In general, you have a "server" which is some tool built to understand a particular
       -- language (such as `gopls`, `lua_ls`, `rust_analyzer`, etc.). These Language Servers
-      -- (sometimes called LSP servers, but t<<< masterhat's kind of like ATM Machine) are standalone
+      -- (sometimes called LSP servers, but that's kind of like ATM Machine) are standalone
       -- processes that communicate with some "client" - in this case, Neovim!
       --"
       -- LSP provides Neovim with features like:
@@ -566,14 +564,16 @@ require('lazy').setup({
       -- You can press `g?` for help in this menu.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'lua_ls', -- Lua Language server
+        'lua-language-server',
         'stylua', -- Used to format Lua code
         -- You can add other tools here that you want Mason to install
       })
 
-      ensure_installed = vim.tbl_filter(function(server_name)
-        return server_name ~= 'sourcekit'
-      end, ensure_installed)
+      local mason_name_map = {
+        rust_analyzer = 'rust-analyzer',
+      }
+      ensure_installed = vim.tbl_filter(function(server_name) return server_name ~= 'sourcekit' end, ensure_installed)
+      ensure_installed = vim.tbl_map(function(server_name) return mason_name_map[server_name] or server_name end, ensure_installed)
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       for name, server in pairs(servers) do
@@ -652,7 +652,7 @@ require('lazy').setup({
 
   { -- Autocompletion
     'saghen/blink.cmp',
-    event = 'VimEnter',<<< master
+    event = 'VimEnter',
     version = '1.*',
     dependencies = {
       -- Snippet Engine
@@ -817,7 +817,7 @@ require('lazy').setup({
   require 'kickstart.plugins.indent_line',
   require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
-  require 'kickstart.plugins.neo-tree',<<< master
+  require 'kickstart.plugins.neo-tree',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
