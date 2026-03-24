@@ -2,13 +2,10 @@
 
 ## Introduction
 
-A starting point for Neovim that is:
+My personal nvim configuration based on kickstart that is:
 
 * Small
 * Single-file
-* Completely Documented
-
-**NOT** a Neovim distribution, but instead a starting point for your configuration.
 
 ## Installation
 
@@ -82,8 +79,11 @@ too - it's ignored in the kickstart repo to make maintenance easier, but it's
 <details><summary> Linux and Mac </summary>
 
 ```sh
-git clone https://github.com/nvim-lua/kickstart.nvim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
+git clone git@github.com:Rue0612/kickstart.nvim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
 ```
+```fish
+  git clone git@github.com:Rue0612/kickstart.nvim.git ~/.config/nvim/
+  ```
 
 </details>
 
@@ -243,7 +243,7 @@ sudo dnf install -y gcc make git ripgrep fd-find tree-sitter-cli unzip neovim
 <details><summary>Arch Install Steps</summary>
 
 ```
-sudo pacman -S --noconfirm --needed gcc make git ripgrep fd tree-sitter-cli unzip neovim
+sudo pacman -S --noconfirm --needed gcc make git ripgrep fd tree-sitter-cli unzip neovim wl-clipboard
 ```
 </details>
 
