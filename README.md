@@ -243,7 +243,7 @@ sudo dnf install -y gcc make git ripgrep fd-find tree-sitter-cli unzip neovim
 <details><summary>Arch Install Steps</summary>
 
 ```
-sudo pacman -S --noconfirm --needed gcc make git ripgrep fd tree-sitter-cli unzip neovim wl-clipboard
+sudo pacman -S --noconfirm --needed gcc make git ripgrep fd tree-sitter-cli unzip neovim wl-clipboard ttf-jetbrains-mono-nerd
 ```
 </details>
 
