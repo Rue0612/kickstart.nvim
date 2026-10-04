@@ -79,6 +79,10 @@ vim.o.splitbelow = true
 vim.o.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
+-- Better Folders
+vim.opt.fillchars:append { fold = ' ' } -- no more dots
+vim.o.foldtext = '' -- show the real line, with syntax colors
+
 -- Preview substitutions live, as you type!
 vim.o.inccommand = 'split'
 
@@ -141,6 +145,11 @@ vim.keymap.set('n', '<C-Right>', '<C-w><C-l>', { desc = 'Move focus to the right
 vim.keymap.set('n', '<leader>tt', ':!alacritty --working-directory=%:p:h &<CR><CR>', { desc = 'Open external terminal in current file directory' })
 vim.keymap.set('n', '<leader>t.', ':lcd %:p:h | terminal<CR>', { desc = 'Open integrated terminal in current file directory' })
 vim.keymap.set('n', '<leader>ts', ':vsplit | lcd %:p:h | terminal<CR>', { desc = 'Open terminal split in current file directory' })
+
+-- Better folds for colemack
+vim.keymap.set('n', '<leader>z', 'za', { desc = 'Toggle [Z]fold' })
+vim.keymap.set('n', '<leader>Z', 'zM', { desc = 'Close all folds' })
+vim.keymap.set('n', '<leader>O', 'zR', { desc = 'Open all folds' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -235,6 +244,11 @@ require('lazy').setup({
       scroll = {
         enabled = true,
         spooky = false,
+      },
+
+      statuscolumn = {
+        enabled = true,
+        folds = { open = true },
       },
     },
 
@@ -654,7 +668,7 @@ require('lazy').setup({
     branch = 'main',
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter-intro`
     config = function()
-      local parsers = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
+      local parsers = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'rust', 'vim', 'vimdoc' }
       require('nvim-treesitter').install(parsers)
       vim.api.nvim_create_autocmd('FileType', {
         callback = function(args)
@@ -670,8 +684,8 @@ require('lazy').setup({
 
           -- enables treesitter based folds
           -- for more info on folds see `:help folds`
-          -- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-          -- vim.wo.foldmethod = 'expr'
+          vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+          vim.wo.foldmethod = 'expr'
 
           -- enables treesitter based indentation
           vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
