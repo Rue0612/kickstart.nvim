@@ -82,6 +82,8 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 -- Better Folders
 vim.opt.fillchars:append { fold = ' ' } -- no more dots
 vim.o.foldtext = '' -- show the real line, with syntax colors
+vim.o.foldlevel = 99 -- start with fold open
+vim.o.foldlevelstart = 99 -- don't close folds when opening buffer
 
 -- Preview substitutions live, as you type!
 vim.o.inccommand = 'split'
